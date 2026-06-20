@@ -1,0 +1,13 @@
+{
+  "name": "tech-news-digest",
+  "version": "1.0.0",
+  "description": "Daily Tech News Digest — fetches top 10 HackerNews stories and displays them grouped by topic",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "ejs": "^3.1.10"
+  }
+}

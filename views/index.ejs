@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech News Digest</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --accent: #58a6ff;
+      --green: #3fb950;
+      --orange: #d29922;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+    .container { max-width: 820px; margin: 0 auto; }
+    header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    header .meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 0.3rem;
+    }
+    .summary {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .summary h2 {
+      font-size: 1rem;
+      color: var(--green);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .category {
+      margin-bottom: 1.8rem;
+    }
+    .category h3 {
+      font-size: 1.1rem;
+      color: var(--orange);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.8rem;
+    }
+    .story {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #21262d;
+    }
+    .story:last-child { border-bottom: none; }
+    .story .rank {
+      color: var(--muted);
+      font-size: 0.85rem;
+      min-width: 1.5rem;
+      text-align: right;
+    }
+    .story .info { flex: 1; }
+    .story .title {
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .story .title:hover { color: var(--accent); text-decoration: underline; }
+    .story .meta-line {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+    }
+    .story .score {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.15rem 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--green);
+      white-space: nowrap;
+    }
+    footer {
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    .refresh-btn {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.5rem 1.2rem;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .refresh-btn:hover { opacity: 0.85; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>&#128240; Tech News Digest</h1>
+      <div class="meta">
+        Top <%= digest.total %> stories from
+        <a href="https://news.ycombinator.com" style="color: var(--accent); text-decoration: none;">Hacker News</a>
+        &mdash; fetched <%= new Date(digest.fetchedAt).toLocaleString() %>
+      </div>
+    </header>
+
+    <div class="summary">
+      <h2>&#128161; Today's Summary</h2>
+      <p><%= summary %></p>
+    </div>
+
+    <% digest.groups.forEach(function(group) { %>
+      <div class="category">
+        <h3><%= group.name %></h3>
+        <% group.stories.forEach(function(story, i) { %>
+          <div class="story">
+            <span class="rank"><%= i + 1 %>.</span>
+            <div class="info">
+              <a class="title" href="<%= story.url %>" target="_blank" rel="noopener"><%= story.title %></a>
+              <div class="meta-line">
+                by <%= story.author %> &middot; <%= story.comments %> comments
+              </div>
+            </div>
+            <span class="score"><%= story.score %></span>
+          </div>
+        <% }); %>
+      </div>
+    <% }); %>
+
+    <footer>
+      <p>Data from the <a href="https://github.com/HackerNews/API">HackerNews API</a> &middot; Refreshes on each page load</p>
+      <form action="/" method="GET" style="margin-top: 0.5rem;">
+        <button class="refresh-btn" type="submit">&#128260; Refresh Now</button>
+      </form>
+    </footer>
+  </div>
+</body>
+</html>
