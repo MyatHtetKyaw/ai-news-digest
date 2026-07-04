@@ -9,7 +9,8 @@ A clean, dark-themed web app that fetches the top 10 trending stories from [Hack
 - **Daily summary** — an at-a-glance overview of what's trending
 - **Dark UI** — GitHub-inspired dark theme, easy on the eyes
 - **Zero config** — no API keys or database needed
-
+<img width="1280" height="800" alt="Tech News Digest - hero section" src="images/screenshot-viewport.png" />
+<img width="1280" height="800" alt="Tech News Digest - stories list" src="images/screenshot-stories.png" />
 
 
 
