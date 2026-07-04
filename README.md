@@ -11,6 +11,7 @@ A clean, dark-themed web app that fetches the top 10 trending stories from [Hack
 - **Zero config** — no API keys or database needed
 <img width="1280" height="800" alt="Tech News Digest - hero section" src="images/screenshot-viewport.png" />
 <img width="1280" height="800" alt="Tech News Digest - stories list" src="images/screenshot-stories.png" />
+<img width="1280" height="800" alt="Tech News Digest - AI & Machine Learning section" src="images/screenshot-ai-section.png" />
 
 
 
