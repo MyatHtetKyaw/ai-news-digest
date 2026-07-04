@@ -9,8 +9,7 @@ A clean, dark-themed web app that fetches the top 10 trending stories from [Hack
 - **Daily summary** — an at-a-glance overview of what's trending
 - **Dark UI** — GitHub-inspired dark theme, easy on the eyes
 - **Zero config** — no API keys or database needed
-<img width="1127" height="844" alt="image" src="https://github.com/user-attachments/assets/c6093710-1d0d-4372-9a1c-49c6517af183" />
-<img width="1144" height="971" alt="image" src="https://github.com/user-attachments/assets/9c3426e4-e917-4733-8863-d757d73db1a8" />
+
 
 
 
