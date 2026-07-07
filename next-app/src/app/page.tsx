@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import CategoryTabs from "@/components/CategoryTabs";
 import { fetchAllNews } from "@/lib/aggregator";
 
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 export default async function Home() {
   const digest = await fetchAllNews();

@@ -24,7 +24,7 @@ Multi-source AI and vibe coding news aggregator. Collects news from 5 sources, c
 ## Tech Stack
 
 - Next.js 16 (App Router, TypeScript, Tailwind CSS)
-- ISR with 1-hour revalidation
+- ISR with 24-hour revalidation
 - Vercel cron jobs for auto-refresh
 - `rss-parser` for RSS feeds
 - `cheerio` for HTML scraping
