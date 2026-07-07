@@ -27,7 +27,7 @@ export default async function Home() {
 
         <footer className="mt-16 pt-8 border-t border-white/10 text-center text-gray-500 text-sm">
           <p>
-            AI News Digest · Aggregating from 5 sources · Updates hourly
+            AI News Digest · Aggregating from 5 sources · Updates daily
           </p>
         </footer>
       </main>
