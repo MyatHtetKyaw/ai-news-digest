@@ -1,63 +1,79 @@
-# 📰 Tech News Digest
+# AI News Digest
 
-A clean, dark-themed web app that fetches the top 10 trending stories from [Hacker News](https://news.ycombinator.com) and displays them grouped by topic — refreshed on every page load.
+Multi-source AI and vibe coding news aggregator. Collects news from 5 sources, categorizes into 5 groups, auto-refreshes daily on Vercel.
 
-## Features
+**Live:** https://ai-news-digest.vercel.app
 
-- **Live data** — pulls directly from the Hacker News API on each request
-- **Topic grouping** — stories are automatically categorized into sections (e.g. AI/ML, Web Dev, Open Source)
-- **Daily summary** — an at-a-glance overview of what's trending
-- **Dark UI** — GitHub-inspired dark theme, easy on the eyes
-- **Zero config** — no API keys or database needed
+## Sources
 
+| Source | What | Method |
+|--------|------|--------|
+| Newsletters | Latent Space + AI Engineer | RSS feeds |
+| Community | Lobste.rs AI + VibeCoding tags | RSS feeds |
+| GitHub Trending | Daily trending repos | HTML scraping |
+| HackerNews | Top 20 stories | Firebase API |
 
+## Categories
+
+- AI Tools & Products
+- Vibe Coding
+- AI Research
+- AI Business & Funding
+- AI Ethics & Regulation
 
 ## Tech Stack
 
-- **Runtime:** Node.js
-- **Server:** Express
-- **Templating:** EJS
-- **Data source:** [Hacker News Firebase API](https://github.com/HackerNews/API)
+- Next.js 16 (App Router, TypeScript, Tailwind CSS)
+- ISR with 1-hour revalidation
+- Vercel cron jobs for auto-refresh
+- `rss-parser` for RSS feeds
+- `cheerio` for HTML scraping
+- Keyword-based categorization
+- In-memory + file-based caching
 
 ## Getting Started
 
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) v18 or later
-
-### Installation
-
 ```bash
-git clone https://github.com/MyatHtetKyaw/tech-news-digest.git
-cd tech-news-digest
+cd next-app
 npm install
+npm run dev
 ```
 
-### Run
+Open [http://localhost:3000](http://localhost:3000).
+
+## Deploy
 
 ```bash
-npm start
+cd next-app
+vercel deploy --prod
 ```
-
-Then open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Project Structure
 
 ```
-tech-news-digest/
-├── app.js              # Express server and main route
+next-app/src/
+├── app/
+│   ├── page.tsx              # Main dashboard (server component)
+│   ├── layout.tsx            # Root layout with dark theme
+│   ├── globals.css           # Dark theme, animated background
+│   └── api/
+│       ├── news/route.ts     # GET /api/news - cached data
+│       └── cron/route.ts     # GET /api/cron - Vercel cron trigger
 ├── lib/
-│   ├── fetchStories.js # Fetches top stories from HN API
-│   ├── formatDigest.js # Groups stories by topic
-│   └── summarizer.js   # Generates a daily summary
-├── views/
-│   └── index.ejs       # HTML template (dark-themed UI)
-└── package.json
+│   ├── sources/
+│   │   ├── newsletter.ts     # Latent Space + AI Engineer RSS
+│   │   ├── twitter.ts        # Lobste.rs AI community RSS
+│   │   ├── github.ts         # GitHub trending scrape
+│   │   ├── reddit.ts         # Lobste.rs vibecoding RSS
+│   │   └── hackernews.ts     # HN Firebase API
+│   ├── categories.ts         # Keyword-based classifier
+│   ├── cache.ts              # In-memory + /tmp file cache
+│   ├── aggregator.ts         # Main orchestrator
+│   └── types.ts              # Shared TypeScript types
+├── components/
+│   ├── Header.tsx            # App header with source counts
+│   ├── CategoryTabs.tsx      # Tab switching between categories
+│   ├── CategoryGroup.tsx     # Category section
+│   └── NewsCard.tsx          # Individual news item card
+└── vercel.json               # Cron config: daily at midnight
 ```
-
-## How It Works
-
-1. On each page load, `fetchStories.js` hits the HN API and grabs the top 10 stories.
-2. `formatDigest.js` categorizes them into topic groups.
-3. `summarizer.js` produces a short summary of the day's highlights.
-4. Everything is rendered server-side with EJS and served as a single page.
