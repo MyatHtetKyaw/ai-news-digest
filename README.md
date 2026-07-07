@@ -2,7 +2,7 @@
 
 Multi-source AI and vibe coding news aggregator. Collects news from 5 sources, categorizes into 5 groups, auto-refreshes daily on Vercel.
 
-**Live:** https://ai-news-digest.vercel.app
+**Live:** [ttps://ai-news-digest.vercel.app](https://ai-tech-news-digest.vercel.app/)
 
 ## Sources
 
